@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.Net_6_code_first.Model
 {
-    public class MovieContext : DbContext
+    public class MovieContext : IdentityDbContext<IdentityUser>
     {
         public MovieContext(DbContextOptions<MovieContext> options):base(options)
         {
@@ -10,7 +12,7 @@ namespace Asp.Net_6_code_first.Model
         }
         public DbSet<Movie> Movies { get; set; }
 
-
+        //what is this function????
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -19,5 +21,14 @@ namespace Asp.Net_6_code_first.Model
                 // optionsBuilder.UseOracle("User Id=TESTDB;Password=testdb;Data Source=10.11.201.14:1525/NSIDB;");
             }
         }
+
+        //for what this function is used??I dont know 
+        //do further researh for knowing better 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
+
     }
 }
